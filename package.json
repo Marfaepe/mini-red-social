@@ -1,0 +1,35 @@
+{
+  "name": "minisocial",
+  "version": "1.0.0",
+  "description": "Proyecto de una pequeña red social",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "serve": "nodemon app.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://codeberg.org/Martha/miniSocial"
+  },
+  "keywords": [
+    "social",
+    "network",
+    "example"
+  ],
+  "author": "Martha",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "csurf": "^1.11.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^1.4.5-lts.1",
+    "nunjucks": "^3.2.4",
+    "sqlite3": "^5.1.7"
+  }
+}

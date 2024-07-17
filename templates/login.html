@@ -1,0 +1,28 @@
+{% extends "base.html" %}<!-- Hereda de la plantilla base-->
+{% block title %} Login {% endblock %}
+{% block content %}<!--Inicia el contenido-->
+
+
+<!--Escribimos el cuerpo del formulario-->
+<form action="/login" class="form" method="post" >
+    <input name="_csrf" type="hidden" value={{csrfToken}}>
+    
+
+    <div class="inputContainer">
+        <label for="" class="label">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username">
+
+    </div>
+
+    <div class="inputContainer">
+        <label for="" class="label">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+
+    </div>
+
+    
+    <button type="submit" value="enviar" class="btn">LOGIN</button>
+</form>
+
+<a href="/register">Not a user? register!</a>
+{% endblock %}<!--Finaliza el contenido-->

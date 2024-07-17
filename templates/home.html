@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Página de inicio {% endblock %}
+
+{% block content %}
+
+
+<p><a href="/logout">Logout</a></p>
+
+<h2>Lista de Post</h2>
+<ol>
+  {% for post in posts %}
+  <li>
+    <strong>{{ post.username }}</strong><br>
+    <strong>Fecha:</strong> {{ post.post_data }} <br>
+    <strong>Descripción:</strong> {{ post.post_description }}<br>
+    <strong>Imagen:</strong> {{ post.imagen_url }}<br>
+  </li>
+
+  {% else %}
+  <li>No hay artículos disponibles</li>
+  {% endfor %}
+</ol>
+
+
+<h2>Escribe tu artículo:<span>{{username}}</span></h2>
+
+
+<form action="/submit_entrada" method="POST" id="formulario-home" enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+  <label for="fecha">Fecha:</label><br>
+  <input type="date" id="fecha" name="fecha" required><br><br>
+
+  <label for="description">Descripción:</label><br>
+  <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+  <label for="avatar">Selecciona una imagen:</label>
+  <input type="file" name="avatar" id="avatar" required accept="image/*"><br><br>
+
+
+  <button type="submit">Publicar Artículo</button>
+</form>
+
+{% if message %}
+<div style="color: red;">
+  {{ message }}
+</div>
+{% endif %}
+{% endblock %}

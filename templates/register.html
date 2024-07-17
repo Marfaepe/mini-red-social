@@ -1,0 +1,58 @@
+{% extends "base.html" %}<!-- Hereda de la plantilla base-->
+{% block title %} Register {% endblock %}
+{% block content %}<!--Inicia el contenido-->
+
+
+<!--Escribimos el cuerpo del formulario-->
+<form action="/register" class="form" method="post">
+    
+    <input name="_csrf" type="hidden" value={{csrfToken}}>
+
+    <div class="inputContainer">
+        <label for="name" class="label">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name">
+
+    </div>
+
+    <div class="inputContainer">
+        <label for="surname" class="label">Surname</label>
+        <input type="text" id="surname" name="surname" placeholder="Surname">
+
+    </div>
+
+    <div class="inputContainer">
+        <label for="email" class="label">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email">
+
+    </div>
+
+    <div class="inputContainer">
+        <label for="username" class="label">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username">
+
+    </div>
+
+
+    <div class="inputContainer">
+        <label for="password" class="label">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+
+    </div>
+
+    <div class="inputContainer">
+        <label for="repeatPassword" class="label">Repeat Password</label>
+        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Password">
+
+    </div>
+
+
+    <button type="submit" value="enviar" class="btn">ENVIAR</button>
+</form>
+
+{% if message %}
+<div style="color: red;">
+    {{ message }}
+</div>
+{% endif %}
+
+{% endblock %}<!--Finaliza el contenido-->

@@ -1,0 +1,67 @@
+body{
+    background-color: #5a5757;
+    color: #fff;
+}
+a{
+    color: #fff;
+
+   
+}
+h1{
+    text-align: center;
+}
+header{
+   border: 1px solid rgb(172, 172, 218);
+   padding-bottom: 20px;
+   margin-bottom: 50px;
+   
+}
+header ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+header ul a{
+    color: #fff;
+}
+#formulario-home, .form{
+    border: 1px solid rgb(172, 172, 218);
+    padding: 50px;
+}
+
+#formulario-home input, #formulario-home .label,  #formulario-home textarea, .inputContainer input, .inputContainer label{
+
+    width: 45%;
+    padding: 10px;
+    margin-top: 15px;
+  
+}
+.label {
+
+width: 100%;
+}
+#formulario-home button, .form button{
+    padding: 10px;
+    font-size: 15px;
+}
+#list-users{
+   
+    width: 50%;
+  
+}
+#list-users li{
+    border-bottom: 1px solid rgba(172, 172, 218, 0.397);
+    padding: 50px;;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 3px;
+    text-transform: capitalize;
+}
+#list-users li button{
+    background-color: rgb(172, 172, 218);
+    padding: 5px 10px;
+    color: #fff;
+    
+}

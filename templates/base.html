@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniSocial </title>
+    <link rel="stylesheet"  type="text/css" href="/static/css/style.css">
+
+</head>
+
+<body>
+    <h1 class="main-title">Minisocial - {% block title %} {% endblock %} </h1>
+    <header>
+
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/users">Users</a></li>
+        </ul>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+
+</html>
+</body>
+
+</html>
