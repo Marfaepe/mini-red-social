@@ -65,3 +65,14 @@ width: 100%;
     color: #fff;
     
 }
+
+.post-image {
+    max-width: 100px; 
+    height: auto;    
+    border-radius: 8px; 
+    margin: 10px 0;  
+}
+
+  .image-container {
+     margin: 10px 0;     
+  }

@@ -26,18 +26,14 @@ nunjucks.configure('templates', {
   express: app,
   watch: true
 });
-
+// Configura Express para usar Nunjucks como el motor de plantillas
+app.set('view engine', 'html');
 
 //middlewares
 app.use('/static', express.static('public'));
 
 app.use(express.urlencoded({ extended: true }));//Leer el contenido del formulario
 
-//Aquí va el código de cookies
-/*  app.use(session({
-  secret: 'This should be a prepares secret',    //se genera desde aleatorio es mejor desde el nucleo
-  cookie: { maxAge: 60000 }
-}));  */
 
 // Configuración de sesiones
 app.use(session({
@@ -56,7 +52,7 @@ function protectedByLogin(req, res, next) {
   if (req.session.user_id !== undefined) {
     next();
   } else {
-    res.render('/login');
+    res.redirect('/login');
   }
 }
 
@@ -69,16 +65,18 @@ app.use('/uploads', express.static('uploads'));
 app.post('/submit_entrada', protectedByLogin, upload.single('avatar'), csurfMidleware, async (req, res) => {
   try {
     // Procesamiento de la carga de archivos
-    res.send('Archivo subido exitosamente');
-    //crear un post
+    console.log('Archivo subido exitosamente');
+    
+    // Crear un post en la base de datos
     await Db.createPost(req.body, req.file.path, req.session.user_id);
+    
+    // Redireccionar después de crear el post
     res.redirect('/home');
 
   } catch (error) {
-    console.log(error);
+    console.error('Error al procesar la carga de archivos y crear el post:', error);
     const csrfToken = req.csrfToken();
-    res.status(400).render('home.html', { mesage: 'Error al crear el post', csrfToken })
-
+    res.status(400).render('home.html', { message: 'Error al crear el post', csrfToken });
   }
 });
 
@@ -88,14 +86,11 @@ app.use(csurfMidleware);
 
 // Ruta para la página de inicio
 
-app.get('/', protectedByLogin, (req, res) => {
-  res.redirect('/home');
-})
-
+// Ruta para la página de inicio
 app.get('/home', protectedByLogin, async (req, res) => {
   try {
     let user = await Db.getUserById(req.session.user_id);
-    let posts = await Db.getAllPostFromUsersFollowedBy(req.session.user_id); // Obtener publicaciones reales desde la base de datos
+    let posts = await Db.getAllPostFromUsersFollowedBy(req.session.user_id);
     let csrfToken = req.csrfToken();
     res.render('home.html', { posts: posts, csrfToken });
   } catch (error) {
@@ -104,24 +99,18 @@ app.get('/home', protectedByLogin, async (req, res) => {
   }
 });
 
-//Ruta para la página de los usuarios
+//Ruta para la página de los usuarios+
 app.get('/users', protectedByLogin, async (req, res) => {
   try {
-    //Obtener la lista de usuarios desde la base de Datos
-    let users = await Db.getAllUsers(); //Funcion sacada desde  DB
+    let users = await Db.getAllUsers();
     let followed = await Db.getFollowed(req.session.user_id);
-    let isFollowed = (user, follows) => {
-
-      return follows.find((el) => el.followed_id == user.user_id);
-    }
+    let isFollowed = (user, follows) => follows.find((el) => el.followed_id == user.user_id);
     res.render('users.html', { users: users, followed: followed, isFollowed: isFollowed });
-  }
-  catch (error) {
-    console.error('Error al obtener la lista de ususario', error);
+  } catch (error) {
+    console.error('Error al obtener la lista de usuarios:', error.message);
     res.render('users.html', { users: [], message: 'Error al obtener la lista de usuarios' });
   }
 });
-
 //Ruta para los follow
 
 app.get("/follow/:followed_id", protectedByLogin, async (req, res) => {
@@ -151,19 +140,19 @@ app.post('/login', async (req, res) => {
   const csrfToken = req.csrfToken();
   try {
     let user = await Db.getUsername(req.body.username);
+    const csrfToken = req.csrfToken(); // Genera el token CSRF antes de la autenticación
     if (user && await Passwords.compare(req.body.password, user.password)) {
-      // conectado correctamente
-      console.log(user);
+     
       req.session.user_id = user.user_id;
 
       res.redirect('/home');
-      console.log('hiolaaaaaaaaaaaa');
-
+    
     } else {
       res.status(400).render('login.html', { message: 'Usuario o contraseña incorrectas', csrfToken });
     }
   } catch (error) {
     console.error('Error en el login:', error);
+    const csrfToken = req.csrfToken();
     res.status(500).render('login.html', { message: 'Error en el servidor, por favor intenta nuevamente', csrfToken });
   }
 });

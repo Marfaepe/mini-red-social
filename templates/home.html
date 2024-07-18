@@ -14,7 +14,11 @@
     <strong>{{ post.username }}</strong><br>
     <strong>Fecha:</strong> {{ post.post_data }} <br>
     <strong>Descripción:</strong> {{ post.post_description }}<br>
-    <strong>Imagen:</strong> {{ post.imagen_url }}<br>
+    {% if post.imagen_url %}
+    <div class="image-container">
+      <img src="{{ post.imagen_url }}" alt="Imagen del post" class="post-image">
+    </div>
+    {% endif %}
   </li>
 
   {% else %}
