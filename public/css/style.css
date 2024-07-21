@@ -1,78 +1,153 @@
-body{
-    background-color: #5a5757;
-    color: #fff;
+body {
+    background-color: #007A78;
+    color: #FFC745;
+    font-size: 20px;
 }
-a{
-    color: #fff;
 
-   
+a {
+    color: #fff;
 }
-h1{
+
+h1 {
     text-align: center;
 }
-header{
-   border: 1px solid rgb(172, 172, 218);
-   padding-bottom: 20px;
-   margin-bottom: 50px;
-   
+
+header {
+    border: 1px solid rgb(172, 172, 218);
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+
 }
-header ul{
+
+header ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
 }
-header ul a{
-    color: #fff;
+
+header ul a {
+    color: #FFC745;
+    padding-right: 20px;
 }
-#formulario-home, .form{
+
+#logout {
+    text-align: right;
+    padding-right: 20px;
+}
+h2>span{
+    color: red;
+}
+#formulario-home,
+.form {
     border: 1px solid rgb(172, 172, 218);
-    padding: 50px;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+
 }
 
-#formulario-home input, #formulario-home .label,  #formulario-home textarea, .inputContainer input, .inputContainer label{
+#formulario-home input,
+#formulario-home .label,
+#formulario-home textarea,
+.inputContainer input,
+.inputContainer label,
+.inputContainer {
 
-    width: 45%;
+    width: 90%;
     padding: 10px;
     margin-top: 15px;
-  
 }
-.label {
 
-width: 100%;
+.btn {
+    width: 200px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+
 }
-#formulario-home button, .form button{
+
+a.enlace {
+    margin-top: 20px;
+    display: inline-block;
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
 }
-#list-users{
-   
-    width: 50%;
-  
+ol{
+    color:#fff;
 }
-#list-users li{
+#list-users {
+    width: 70%;
+}
+
+#list-users li {
     border-bottom: 1px solid rgba(172, 172, 218, 0.397);
-    padding: 50px;;
+    padding: 50px;
     display: flex;
     justify-content: space-between;
     padding: 5px;
     margin: 3px;
     text-transform: capitalize;
-}
-#list-users li button{
-    background-color: rgb(172, 172, 218);
-    padding: 5px 10px;
     color: #fff;
-    
+
+}
+
+#list-users li button {
+    background-color: #fff;
+    padding: 5px 10px;
+    color: #007A78;
+ 
+
 }
 
 .post-image {
-    max-width: 100px; 
-    height: auto;    
-    border-radius: 8px; 
-    margin: 10px 0;  
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-color: #1b1b1b;
 }
 
-  .image-container {
-     margin: 10px 0;     
+.image-container {
+    margin: 10px 0;
+}
+
+.lista-articulos {
+    margin: 0px !important;
+    padding: 10px;
+    width: 100%;
+    background-color: #007A78;
+
+    color: #FFC745;
+}
+
+/* Media query para tabletas (pantallas medianas) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .form {
+          width: 60%;
+    
+    }
+    
+
+}
+
+/* Media query para ordenadores (pantallas grandes) */
+@media (min-width: 1024px) {
+    .form {
+        width: 60%;
+  
   }
+  #formulario-home input,
+#formulario-home .label,
+#formulario-home textarea,
+.inputContainer {
+    padding: 12px;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+}

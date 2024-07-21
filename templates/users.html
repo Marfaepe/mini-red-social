@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Users{% endblock %}
 {% block content %}
-  <h2>Lista de Usuarios</h2>
-  <ul id="list-users">
-    {% for user in users %}
-      <li>{{ user.username }} 
-        {% if isFollowed(user, followed) %}
-          <button type="submit" onclick="location.href='/unfollow/{{user.user_id}}'">Dejar de seguir</button>
-        {% else %}
-          <button type="submit" onclick="location.href='/follow/{{user.user_id}}'">Seguir</button>
-        {% endif %}
-      </li>
+<h2>Lista de Usuarios</h2>
+<ul id="list-users">
+  {% for user in users %}
+  <li>{{ user.username }}
+    {% if isFollowed(user, followed) %}
+    <button type="submit" onclick="location.href='/unfollow/{{user.user_id}}'">Dejar de seguir</button>
     {% else %}
-      <li>No hay usuarios</li>
-    {% endfor %}
-  </ul>
+    <button type="submit" onclick="location.href='/follow/{{user.user_id}}'">Seguir</button>
+    {% endif %}
+  </li>
+  {% else %}
+  <li>No hay usuarios</li>
+  {% endfor %}
+</ul>
 {% endblock %}

@@ -5,27 +5,29 @@
 {% block content %}
 
 
-<p><a href="/logout">Logout</a></p>
+<p id="logout"><a href="/logout">Logout</a></p>
 
-<h2>Lista de Post</h2>
-<ol>
-  {% for post in posts %}
-  <li>
-    <strong>{{ post.username }}</strong><br>
-    <strong>Fecha:</strong> {{ post.post_data }} <br>
-    <strong>Descripción:</strong> {{ post.post_description }}<br>
-    {% if post.imagen_url %}
-    <div class="image-container">
-      <img src="{{ post.imagen_url }}" alt="Imagen del post" class="post-image">
-    </div>
-    {% endif %}
-  </li>
+<section class="lista-articulos">
+  <h2>Lista de Post</h2>
 
-  {% else %}
-  <li>No hay artículos disponibles</li>
-  {% endfor %}
-</ol>
+  <ol>
+    {% for post in posts %}
+    <li>
+      <strong>{{ post.username }}</strong><br>
+      <strong>Fecha:</strong> {{ post.post_data }} <br>
+      <strong>Descripción:</strong> {{ post.post_description }}<br>
+      {% if post.imagen_url %}
+      <div class="image-container">
+        <img src="{{ post.imagen_url }}" alt="Imagen del post" class="post-image">
+      </div>
+      {% endif %}
+    </li>
 
+    {% else %}
+    <li>No hay artículos disponibles</li>
+    {% endfor %}
+  </ol>
+</section>
 
 <h2>Escribe tu artículo:<span>{{username}}</span></h2>
 
@@ -33,22 +35,30 @@
 <form action="/submit_entrada" method="POST" id="formulario-home" enctype="multipart/form-data">
   <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
-  <label for="fecha">Fecha:</label><br>
-  <input type="date" id="fecha" name="fecha" required><br><br>
-
-  <label for="description">Descripción:</label><br>
-  <textarea id="description" name="description" rows="4" required></textarea><br><br>
-
-  <label for="avatar">Selecciona una imagen:</label>
-  <input type="file" name="avatar" id="avatar" required accept="image/*"><br><br>
+  <div class="inputContainer">
+    <label for="fecha">Fecha:</label><br>
+    <input type="date" id="fecha" name="fecha" required><br><br>
+  </div>
 
 
-  <button type="submit">Publicar Artículo</button>
+  <div class="inputContainer">
+    <label for="description">Descripción:</label><br>
+    <textarea id="description" name="description" rows="4" required></textarea><br><br>
+  </div>
+
+  <div class="inputContainer">
+    <label for="avatar">Selecciona una imagen:</label>
+    <input type="file" name="avatar" id="avatar" required accept="image/*"><br><br>
+  </div>
+
+  <div class="inputContainer">
+    <button type="submit" class="btn">Publicar Artículo</button>
+  </div>
 </form>
 
 {% if message %}
-<div style="color: red;">
+<p>
   {{ message }}
-</div>
+</p>
 {% endif %}
 {% endblock %}

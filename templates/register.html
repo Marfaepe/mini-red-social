@@ -5,7 +5,7 @@
 
 <!--Escribimos el cuerpo del formulario-->
 <form action="/register" class="form" method="post">
-    
+
     <input name="_csrf" type="hidden" value={{csrfToken}}>
 
     <div class="inputContainer">
@@ -41,12 +41,13 @@
 
     <div class="inputContainer">
         <label for="repeatPassword" class="label">Repeat Password</label>
-        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Password">
+        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password">
 
     </div>
 
-
-    <button type="submit" value="enviar" class="btn">ENVIAR</button>
+    <div class="inputContainer">
+        <button type="submit" value="enviar" class="btn">SEND</button>
+    </div>
 </form>
 
 {% if message %}
